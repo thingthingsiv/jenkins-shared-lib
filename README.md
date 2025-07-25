@@ -1,33 +1,40 @@
-Jenkins Shared Library
-Overview
-This repo contains a Jenkins shared library with reusable pipeline functions to simplify Jenkinsfiles.
+# Jenkins Shared Library
 
-Functions
-setScriptPermission(List scripts): Adds executable permission to scripts.
+## Overview
+This repository contains a Jenkins shared library with reusable pipeline functions to simplify Jenkins pipelines.
 
-runDeployScript(String scriptPath): Runs a deployment script.
+## Functions
+- **setScriptPermission(List scripts)**: Adds executable permission to specified scripts.
+- **runDeployScript(String scriptPath)**: Executes a deployment script.
 
-Usage
-Add this library to Jenkins (name: my-shared-lib, repo: https://github.com/thingthingsiv/jenkins-shared-lib.git, branch: main).
+## Usage
+1. Add this library to Jenkins configuration:
+   - Name: `my-shared-lib`
+   - Repository URL: `https://github.com/thingthingsiv/jenkins-shared-lib.git`
+   - Default branch: `main`
 
-In your Jenkinsfile:
+2. Use in your Jenkinsfile:
 
-groovy
-Copy
-Edit
+```groovy
 @Library('my-shared-lib@main') _
 
 pipeline {
   agent any
   stages {
     stage('Set Permission') {
-      steps { script { setScriptPermission(['deploy.sh']) } }
+      steps {
+        script {
+          setScriptPermission(['deploy.sh'])
+        }
+      }
     }
     stage('Deploy') {
-      steps { script { runDeployScript('./deploy.sh') } }
+      steps {
+        script {
+          runDeployScript('./deploy.sh')
+        }
+      }
     }
   }
 }
-
-Sivthingthing
-
+sivthingthing
